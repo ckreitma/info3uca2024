@@ -14,7 +14,7 @@ centro = {
 r1 = 350
 r2 = 150
 
-cantidad_rectas = 32
+cantidad_rectas = 2000
 while running:
     event = pygame.event.poll()
     if event.type == pygame.QUIT:

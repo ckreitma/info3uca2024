@@ -1,12 +1,12 @@
 import pygame
 
 # Ancho y alto teórico
-ancho_teorico = 600
-alto_teorico = 600
+ancho_teorico = 900
+alto_teorico = 900
 
 # Ancho y alto real
-ancho_real = 50
-alto_real = 50
+ancho_real = 80
+alto_real = 80
 
 # Relation (ratio) de aspecto entre el real y el teórico
 delta_x = int(ancho_teorico/ancho_real)
@@ -24,12 +24,12 @@ ROJO = (255, 10, 10)
 
 def dibujar_grilla(screen):
 
-    # Lineas horizontales
+    # Líneas horizontales
     for pos_y in range(0, alto_teorico, delta_y):
         # print(f'pos_y={pos_y}')
         pygame.draw.aaline(screen, GRIS, (0, pos_y), (ancho_teorico, pos_y))
 
-    # Lineas verticales
+    # Líneas verticales
     for pos_x in range(0, ancho_teorico, delta_x):
         # print(f'pos_y={pos_y}')
         pygame.draw.aaline(screen, GRIS, (pos_x, 0), (pos_x, alto_teorico))
@@ -57,14 +57,14 @@ while running:
     if event.type == pygame.QUIT:
         running = False
     screen.fill(BLACK)
-    pygame.draw.rect(screen, BLUE, (200, 150, 100, 50))
-    pygame.draw.aaline(screen, (0, 100, 255), (0, 0), (ancho_real-1, alto_real-1))
-    pygame.draw.aaline(screen, (50, 180, 40), (ancho_real-1, 0), (0, alto_real-1))
+    #pygame.draw.rect(screen, BLUE, (200, 150, 100, 50))
+    #pygame.draw.aaline(screen, (0, 100, 255), (0, 0), (ancho_real-1, alto_real-1))
+    #pygame.draw.aaline(screen, (50, 180, 40), (ancho_real-1, 0), (0, alto_real-1))
     dibujar_grilla(screen)
     punto1 = (4, 17)
     pixel(screen, punto1[0], punto1[1], WHITE)
-    punto2 = (45.3, 80.1)
-    pixel(screen, punto2[0], punto2[1], WHITE)
-    transformado = transformar(punto1, 1.3, 2.4)
-    pixel(screen, transformado[0], transformado[1], ROJO)
+    #punto2 = (45.3, 80.1)
+    #pixel(screen, punto2[0], punto2[1], WHITE)
+    #transformado = transformar(punto1, 1.3, 0.4)
+    #pixel(screen, transformado[0], transformado[1], ROJO)
     pygame.display.flip()
