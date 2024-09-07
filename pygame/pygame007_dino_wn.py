@@ -15,8 +15,8 @@ def rellenar(screen, puntos, color_fuera=ROJO, color_dentro=BLANCO):
     p = np.array(puntos)
     miny, maxy = p[:, 1].min(), p[:, 1].max()
     for pos_y in range(miny, maxy):
+        escanear_linea_winding(screen, puntos, pos_y=pos_y, color_dentro=color_dentro, color_fuera=color_fuera)
         #escanear_linea_counting(screen, puntos, pos_y=pos_y, color_dentro=color_dentro, color_fuera=color_fuera)
-        escanear_linea_counting(screen, puntos, pos_y=pos_y, color_dentro=color_dentro, color_fuera=color_fuera)
 
 
 # is_left(): tests if a point is Left|On|Right of an infinite line.
