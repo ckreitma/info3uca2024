@@ -49,6 +49,7 @@ def iterate():
 
 
 def showScreen():
+    glutInit()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
     glLoadIdentity()
     iterate()
@@ -57,7 +58,6 @@ def showScreen():
     triangulo1()
     glutSwapBuffers()
 
-
 glutInit()
 glutInitDisplayMode(GLUT_RGBA)
 glutInitWindowSize(500, 500)
@@ -65,4 +65,5 @@ glutInitWindowPosition(0, 0)
 glutCreateWindow("Primitivas")
 glutDisplayFunc(showScreen)
 glutIdleFunc(showScreen)
+glutInit()
 glutMainLoop()
