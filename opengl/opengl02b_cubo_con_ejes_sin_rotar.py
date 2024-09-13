@@ -2,7 +2,7 @@ from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
 
-altura, ancho = 1800, 1800
+altura, ancho = 1500, 1500
 vertices = (
     (1, -1, -1),
     (1, 1, -1),
@@ -30,8 +30,9 @@ edges = (
 )
 
 
-def Cube():
+def inicializar():
     # Borrar la pantalla
+    glClearColor(1, 1, 1, 1)
     glClear(GL_COLOR_BUFFER_BIT)
 
     # Selecciona la matriz de proyección
@@ -47,15 +48,45 @@ def Cube():
     # Inicializar la matriz.
     glLoadIdentity()
 
-    glTranslatef(0.0, 0.0, -2.2)
+    glTranslatef(0.0, 0.0, -5.0)
 
-    # Ángulo,
-    #glRotatef(45, 0, 0, 1)
+    
+
+
+def ejes():
+    # Eje x
     glBegin(GL_LINES)
+    glColor3f(1, 0, 0)
+    glVertex3f(0, 0, 0)
+    glVertex3f(1, 0, 0)
+
+    glColor3f(0, 1, 0)
+    glVertex3f(0, 0, 0)
+    glVertex3f(0, 1, 0)
+
+    glColor3f(0, 0, 1)
+    glVertex3f(0, 0, 0)
+    glVertex3f(0, 0, 1)
+
+    glEnd()
+
+
+def cubo():
+    # Ángulo,
+    glRotatef(20, 0, 0, 1)
+    
+    glBegin(GL_LINES)
+    glColor3f(0, 0, 0)
     for edge in edges:
         for vertex in edge:
             glVertex3fv(vertices[vertex])
     glEnd()
+
+
+def actualizar():
+    inicializar()
+    ejes()
+    cubo()
     glFlush()
 
 
@@ -65,7 +96,7 @@ def main():
     glutInitWindowSize(altura, ancho)
     glutInitWindowPosition(0, 0)
     glutCreateWindow("Cubo 3D sencillo con líneas")
-    glutDisplayFunc(Cube)
+    glutDisplayFunc(actualizar)
     glutMainLoop()
 
 

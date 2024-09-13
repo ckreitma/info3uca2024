@@ -2,7 +2,7 @@ from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
 
-altura, ancho = 800, 800
+altura, ancho = 1500, 1500
 vertices = (
     (1, -1, -1),
     (1, 1, -1),
@@ -51,7 +51,7 @@ def inicializar():
     glTranslatef(0.0, 0.0, -5.0)
 
     # Ángulo,
-    glRotatef(20, 1, 0, 0)
+    glRotatef(20, 0, 0, 1)
 
 
 def ejes():
