@@ -60,7 +60,7 @@ def inicializar():
     glLoadIdentity()  # Inicializar la matriz.
 
     # Ángulo, ratio, near, far
-    gluPerspective(45, 600/600, 0.1, 50.0)
+    gluPerspective(45, 600 / 600, 0.1, 50.0)
 
     # Matriz de proyección ortogonal
     # glOrtho(-1, 1, -1, 1, -1, 1)
@@ -71,7 +71,7 @@ def inicializar():
 
 def ejes():
     # Borrar la pantalla
-    glClearColor(1, 1, 1, 1)
+    glClearColor(1, 1, 1, 1)  #Color Blanco
     glClear(GL_COLOR_BUFFER_BIT)
 
     glPushMatrix()
@@ -106,7 +106,7 @@ def piramide():
     glLoadIdentity()
 
     glRotatef(rotacion_base[0], rotacion_base[1], rotacion_base[2], rotacion_base[3])
-    glTranslatef(0.0, 0.0, 0.0)
+    glTranslatef(-0.2, 0.0, 0.0)
 
     # Ángulo,
     # glRotatef(45, 1, 0.3, 0.1)
@@ -131,18 +131,10 @@ def piramide2():
     glTranslatef(0.0, 0.0, 0.0)
 
     # Escalado.
-    escalar = [[0.3, 0, 0, 0],
-               [0, 0.3, 0, 0],
-               [0, 0, 0.3, 0],
-               [0, 0, 0, 1]
-               ]
+    escalar = [[0.3, 0, 0, 0], [0, 0.3, 0, 0], [0, 0, 0.3, 0], [0, 0, 0, 1]]
 
-    # Escalado.
-    rotar_z = [[math.cos(0.3), math.sin(0.3), 0, 0],
-               [-math.sin(0.3), math.cos(0.3), 0, 0],
-               [0, 0, 1, 0],
-               [0, 0, 0, 1]
-               ]
+    # Rotación en Z
+    rotar_z = [[math.cos(0.3), math.sin(0.3), 0, 0], [-math.sin(0.3), math.cos(0.3), 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
 
     vertices_escalados = transformar(vertices, np.matmul(escalar, rotar_z))[:, :-1]
 

@@ -3,6 +3,8 @@ from OpenGL.GLU import *
 from OpenGL.GLUT import *
 
 altura, ancho = 1500, 1500
+
+# Un cubo que "rodea" el origen
 vertices = (
     (1, -1, -1),
     (1, 1, -1),
@@ -41,10 +43,10 @@ def inicializar():
 
     # Ángulo, ratio, near, far
     gluPerspective(45, altura/ancho, 0.1, 50.0)
-
+    
     # Seleccionar la matriz modelview
     glMatrixMode(GL_MODELVIEW)
-
+    
     # Inicializar la matriz.
     glLoadIdentity()
 
@@ -54,6 +56,12 @@ def inicializar():
 
 
 def ejes():
+    
+    # Modificamos la ubicación de los ejes
+    glPushMatrix()
+    i = 5
+    delta = 0.00
+    glTranslatef(vertices[i][0]-delta,vertices[i][1]-delta,vertices[i][2]-delta)
     # Eje x
     glBegin(GL_LINES)
     glColor3f(1, 0, 0)
@@ -69,11 +77,13 @@ def ejes():
     glVertex3f(0, 0, 1)
 
     glEnd()
+    glPopMatrix()
 
 
 def cubo():
     # Ángulo,
-    glRotatef(20, 0, 0, 1)
+    glPushMatrix()
+    #glRotatef(20, 0, 0, 1)
     
     glBegin(GL_LINES)
     glColor3f(0, 0, 0)
@@ -81,12 +91,14 @@ def cubo():
         for vertex in edge:
             glVertex3fv(vertices[vertex])
     glEnd()
+    glPopMatrix()
 
 
 def actualizar():
     inicializar()
     ejes()
     cubo()
+    ejes()
     glFlush()
 
 
