@@ -1,12 +1,23 @@
 from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
+"""
+Para inteacción.
+x,X
+y,Y     "Corresponden al ojo
+z,Z
+
+i,I
+o,O     Corresponden al look_at
+p,P
+"""
 
 pantallax, pantallay = 800, 800
 
 ojox, ojoy, ojoz = 0.8, 0.8, 3
 look_x, look_y, look_z = 0.0, 0.0, 0.0
 lado = 0.3
+caras = [True, True, True, True, True, True]
 
 
 def cara(vertices, color):
@@ -63,6 +74,7 @@ def ejes():
 def Cube():
     vertices = []
     global lado
+    global caras
     z = 0
     # Inferior izquierdo
     vertices.append((0, 0, z))
@@ -83,39 +95,45 @@ def Cube():
     ejes()
 
     # Cara izquierda #rosada
-    glPushMatrix()
-    glRotate(-90, 0, 1, 0)
-    cara(vertices, (0.8, 0.2, 0.5))
-    glPopMatrix()
+    if caras[0]:
+        glPushMatrix()
+        glRotate(-90, 0, 1, 0)
+        cara(vertices, (0.8, 0.2, 0.5))
+        glPopMatrix()
 
     # # Cara inferior #amarillo
-    glPushMatrix()
-    glRotate(90, 1, 0, 0)
-    cara(vertices, (0.7, 0.7, 0.1))
-    glPopMatrix()
+    if caras[1]:
+        glPushMatrix()
+        glRotate(90, 1, 0, 0)
+        cara(vertices, (0.7, 0.7, 0.1))
+        glPopMatrix()
 
     # # Cara derecha #celeste
-    glPushMatrix()
-    glTranslatef(lado, 0, 0)
-    glRotate(-90, 0, 1, 0)
-    cara(vertices, (0.2, 0.4, 0.8))
-    glPopMatrix()
+    if caras[2]:
+        glPushMatrix()
+        glTranslatef(lado, 0, 0)
+        glRotate(-90, 0, 1, 0)
+        cara(vertices, (0.2, 0.4, 0.8))
+        glPopMatrix()
 
     # # Cara frontal #verde
-    glPushMatrix()
-    glTranslatef(0, 0, lado)
-    cara(vertices, (0.1, 0.7, 0.2))
-    glPopMatrix()
+    if caras[3]:
+        glPushMatrix()
+        glTranslatef(0, 0, lado)
+        cara(vertices, (0.1, 0.7, 0.2))
+        glPopMatrix()
 
     # # Cara superior #lila
-    glPushMatrix()
-    glTranslatef(0, lado, 0)
-    glRotate(90, 1, 0, 0)
-    cara(vertices, (0.3, 0.1, 0.3))
-    glPopMatrix()
+    if caras[4]:
+        glPushMatrix()
+        glTranslatef(0, lado, 0)
+        glRotate(90, 1, 0, 0)
+        cara(vertices, (0.3, 0.1, 0.3))
+        glPopMatrix()
 
     # # Cara trasera #gris
-    cara(vertices, (0.4, 0.4, 0.4))
+    if caras[5]:
+        cara(vertices, (0.4, 0.4, 0.4))
 
     glFlush()
 
@@ -150,6 +168,8 @@ def buttons(key, x, y):
         look_z += delta
     if key == b'P':
         look_z -= delta
+    if key in [b'0', b'1', b'2', b'3', b'4', b'5', b'6']:
+        caras[int(key)] = not caras[int(key)]
 
     glutPostRedisplay()
 
