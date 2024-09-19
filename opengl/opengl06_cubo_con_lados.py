@@ -5,6 +5,7 @@ from OpenGL.GLUT import *
 pantallax, pantallay = 800, 800
 
 ojox, ojoy, ojoz = 0.8, 0.8, 3
+look_x, look_y, look_z = 0.0, 0.0, 0.0
 lado = 0.3
 
 
@@ -17,7 +18,7 @@ def cara(vertices, color):
 
 
 def display():
-    global ojox, ojoy, ojoz
+    global ojox, ojoy, ojoz, look_x, look_y, look_z
     glEnable(GL_DEPTH_TEST)
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
     # Selecciona la matriz de proyección
@@ -35,7 +36,7 @@ def display():
 
     # Desde, Hacia, Dirección arriba
     print(f'ojox={ojox}')
-    gluLookAt(ojox, ojoy, ojoz, 0, 0, 0, 0.0, 1.0, 0.0)
+    gluLookAt(ojox, ojoy, ojoz, look_x, look_y, look_z, 0.0, 1.0, 0.0)
 
     Cube()
 
@@ -121,8 +122,10 @@ def Cube():
 
 def buttons(key, x, y):
     global ojox, ojoy, ojoz
+    global look_x, look_y, look_z
     delta = 0.1
     print(f'key={key}')
+    # Ojo
     if key == b'x':
         ojox += delta
     if key == b'X':
@@ -135,6 +138,18 @@ def buttons(key, x, y):
         ojoz += delta
     if key == b'Z':
         ojoz -= delta
+    if key == b'i':
+        look_x += delta
+    if key == b'I':
+        look_x -= delta
+    if key == b'o':
+        look_y += delta
+    if key == b'O':
+        look_y -= delta
+    if key == b'p':
+        look_z += delta
+    if key == b'P':
+        look_z -= delta
 
     glutPostRedisplay()
 
