@@ -12,12 +12,15 @@ o,O     Corresponden al look_at
 p,P
 
 n entre 0 y 5 Inhabilitar caras
+
+w e r t
 """
 
 pantallax, pantallay = 800, 800
 
 ojox, ojoy, ojoz = 0.8, 0.8, 3
 look_x, look_y, look_z = 0.0, 0.0, 0.0
+rotacion_general = [0.4, 1, 1, 0]
 lado = 0.3
 caras = [True, True, True, True, True, True]
 
@@ -51,7 +54,14 @@ def display():
     print(f'ojox={ojox}')
     gluLookAt(ojox, ojoy, ojoz, look_x, look_y, look_z, 0.0, 1.0, 0.0)
 
+    ejes()
+
+    # Aplicamos la rotación general
+    glPushMatrix()
+    glRotate(*rotacion_general)
+    glTranslate(0.2, 0.3, -0.4)
     Cube()
+    glPopMatrix()
 
 
 def ejes():
@@ -69,6 +79,11 @@ def ejes():
     glColor3f(0, 0, 1)
     glVertex3f(0, 0, 0)
     glVertex3f(0, 0, largo)
+
+    # Ahora la linea de rotación
+    glColor3f(1, 1, 1)
+    glVertex3f(0, 0, 0)
+    glVertex3f(rotacion_general[1], rotacion_general[2], rotacion_general[3])
 
     glEnd()
 
@@ -93,8 +108,6 @@ def Cube():
         (2, 3),
         (3, 0),
     )
-
-    ejes()
 
     # Cara izquierda #rosada
     if caras[0]:
@@ -143,6 +156,7 @@ def Cube():
 def buttons(key, x, y):
     global ojox, ojoy, ojoz
     global look_x, look_y, look_z
+    global rotacion_general
     delta = 0.1
     print(f'key={key} x={x} y={y}')
     # Ojo
@@ -172,6 +186,25 @@ def buttons(key, x, y):
         look_z -= delta
     if key in [b'0', b'1', b'2', b'3', b'4', b'5', b'6']:
         caras[int(key)] = not caras[int(key)]
+
+    # Rotación respecto al origen
+    delta = 0.5
+    if key == b'w':
+        rotacion_general[0] -= delta
+    if key == b'W':
+        rotacion_general[0] += delta
+    if key == b'e':
+        rotacion_general[1] -= delta
+    if key == b'E':
+        rotacion_general[1] += delta
+    if key == b'r':
+        rotacion_general[2] -= delta
+    if key == b'R':
+        rotacion_general[2] += delta
+    if key == b't':
+        rotacion_general[3] -= delta
+    if key == b'T':
+        rotacion_general[3] += delta
 
     glutPostRedisplay()
 
