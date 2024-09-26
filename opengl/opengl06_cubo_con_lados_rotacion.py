@@ -20,7 +20,7 @@ pantallax, pantallay = 800, 800
 
 ojox, ojoy, ojoz = 0.8, 0.8, 3
 look_x, look_y, look_z = 0.0, 0.0, 0.0
-rotacion_general = [0.4, 1, 1, 0]
+rotacion_general = [0.0, 0, 1, 0]
 lado = 0.3
 caras = [True, True, True, True, True, True]
 

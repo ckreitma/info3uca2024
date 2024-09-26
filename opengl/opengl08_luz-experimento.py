@@ -18,8 +18,8 @@ def main():
     glEnable(GL_CULL_FACE)
     glEnable(GL_DEPTH_TEST)
     glEnable(GL_LIGHTING)
-    lightZeroPosition = [2*-20., 2*2., 2*-2., 1.]
-    lightZeroColor = [0.7, 1., 0., 1.0]  # green tinged
+    lightZeroPosition = [2 * -20., 2 * 2., 2 * -2., 1.]
+    lightZeroColor = [1, 1., 1., 1.0]  # green tinged
     glLightfv(GL_LIGHT0, GL_POSITION, lightZeroPosition)
     glLightfv(GL_LIGHT0, GL_DIFFUSE, lightZeroColor)
     glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 0.1)
@@ -29,9 +29,7 @@ def main():
     glMatrixMode(GL_PROJECTION)
     gluPerspective(40., 1., 1., 40.)
     glMatrixMode(GL_MODELVIEW)
-    gluLookAt(0, 0, 10,
-              0, 0, 0,
-              0, 1, 0)
+    gluLookAt(0, 0, 10, 0, 0, 0, 0, 1, 0)
     # glPushMatrix()
     glutMainLoop()
     return
