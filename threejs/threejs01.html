@@ -3,13 +3,14 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Three.js - Fundamentals with animation</title>
   </head>
   <body>
-    <canvas id="c"></canvas>
+    <canvas id="c" width="400px"></canvas>
   </body>
-<script type="module">
+  <script type="module">
 import * as THREE from './threejs/three.module.js';
 
 function main() {
@@ -19,9 +20,9 @@ function main() {
   const fov = 75;
   const aspect = 2;  // the canvas default
   const near = 0.1;
-  const far = 5;
+  const far = 9;
   const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-  camera.position.z = 2;
+  camera.position.z = 6;
 
   const scene = new THREE.Scene();
 
@@ -51,6 +52,5 @@ function main() {
 }
 
 main();
-</script>
+  </script>
 </html>
-

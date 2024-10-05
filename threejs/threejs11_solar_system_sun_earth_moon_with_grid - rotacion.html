@@ -3,9 +3,8 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Sistema Solar (SOL) + Tierra - Rotacion</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Sistema Solar (SOL) + Tierra </title>
     <style>
     html, body {
         height: 100%;
@@ -48,7 +47,7 @@
     <div id="ui"></div>
     <img src="threejs08.svg" alt="Jerarquía">
   </body>
-  <script type="module">
+<script type="module">
 import * as THREE from './threejs/three.module.js';
 import {GUI} from './threejs/3rdparty/dat.gui.module.js';
 
@@ -176,16 +175,9 @@ function main() {
       camera.updateProjectionMatrix();
     }
 
-    /* No rotamos todos los objetos en la lista 
     objects.forEach((obj) => {
       obj.rotation.y = time;
     });
-    */
-    solarSystem.rotation.y = time/4;
-    earthOrbit.rotation.y = time;
-    moonOrbit.position.y = time/2;
-    moonOrbit.rotation.y = 2*time;
-    //sunMesh.rotation.y = time;
 
     renderer.render(scene, camera);
 
@@ -196,5 +188,5 @@ function main() {
 }
 
 main();
-  </script>
+</script>
 </html>

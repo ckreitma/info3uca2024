@@ -3,7 +3,8 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Three.js - Primitives</title>
     <style>
     html, body {
@@ -20,12 +21,11 @@
   <body>
     <canvas id="c"></canvas>
   </body>
-<script type="module">
+  <script type="module">
   import * as THREE from './threejs/three.module.js';
 function main() {
   const canvas = document.querySelector('#c');
-  const renderer = new THREE.WebGLRenderer({canvas});
-
+  const renderer = new THREE.WebGLRenderer({canvas,antialias:true});
   const fov = 40;
   const aspect = 2;  // the canvas default
   const near = 0.1;
@@ -202,7 +202,7 @@ function main() {
 
     const slices = 25;
     const stacks = 25;
-    addSolidGeometry(2, 1, new THREE.ParametricGeometry(klein, slices, stacks));
+    //addSolidGeometry(2, 1, new THREE.ParametricGeometry(klein, slices, stacks));
   }
   {
     const width = 9;
@@ -378,6 +378,5 @@ function main() {
 }
 
 main();
-</script>
+  </script>
 </html>
-
