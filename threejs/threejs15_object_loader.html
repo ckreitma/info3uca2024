@@ -51,7 +51,8 @@
 			{
 				"imports": {
 					"three": "../threejs/threejs/three.module.js",
-					"object_loader": "../threejs/threejs/loaders/OBJLoader.js"
+					"object_loader": "../threejs/threejs/loaders/OBJLoader.js",
+          "mtt_loader": "../threejs/threejs/loaders/MTTLoader.js"
 				}
 			}
   </script>
@@ -59,7 +60,8 @@
   import * as THREE from './threejs/three.module.js';
   import {GUI} from './threejs/3rdparty/dat.gui.module.js';
   import {OrbitControls} from './threejs/addons/OrbitControls.js';
-  import { OBJLoader } from './threejs/loaders/OBJLoader.js';
+  import {OBJLoader} from './threejs/loaders/OBJLoader.js';
+  import {MTLLoader} from './threejs/loaders/MTLLoader.js';
 
 function main() {
   const canvas = document.querySelector('#c');
@@ -120,12 +122,19 @@ function main() {
   }
 
   {
+      const radius = 1;
+      const widthSegments = 6;
+      const heightSegments = 6;
+      const sphereGeometry = new THREE.SphereGeometry(
+      radius, widthSegments, heightSegments);
+      const sunMaterial = new THREE.MeshPhongMaterial({emissive: 0xFFFF00});
+      const sunMesh = new THREE.Mesh(sphereGeometry, sunMaterial);
+
       const objLoader = new OBJLoader();
-      //pelota = objLoader.load('./threejs/blender/Pallone/Ball OBJ.obj');
-      //pelota.position.y = 0.5;
       objLoader.load('./threejs/blender/Pallone/Ball OBJ.obj', (pelota) => {
           pelota.position.y = 0.8;
-          scene.add(pelota);
+          sunMesh.add(pelota)
+          scene.add(sunMesh);
       });
       //pelota = new OBJLoader('./threejs/blender/Pallone/Ball OBJ.obj')
       //scene.add(pelota);
