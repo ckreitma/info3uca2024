@@ -132,7 +132,7 @@ function main() {
 
       const objLoader = new OBJLoader();
       objLoader.load('./threejs/blender/Pallone/Ball OBJ.obj', (pelota) => {
-          pelota.position.y = 0.8;
+          pelota.position.y = 0.0;
           sunMesh.add(pelota)
           scene.add(sunMesh);
       });
